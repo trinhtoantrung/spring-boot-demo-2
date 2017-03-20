@@ -1,7 +1,6 @@
 package com.t3.spring.boot.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,7 +26,7 @@ public class LogDetail implements Serializable{
   @Column(nullable = false)
   private String erreur;
 
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinColumn(name="id")
   @JsonBackReference
   private Log log;

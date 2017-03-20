@@ -30,7 +30,7 @@ public class Log implements Serializable{
   @Temporal(TemporalType.TIMESTAMP)
   private Date datetrait;
 
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "log")
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "log")
   @JsonManagedReference
   public List<LogDetail> logDetails;
 

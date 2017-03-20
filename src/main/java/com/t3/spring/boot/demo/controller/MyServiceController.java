@@ -4,7 +4,6 @@ import com.t3.spring.boot.demo.model.Log;
 import com.t3.spring.boot.demo.model.LogDetail;
 import com.t3.spring.boot.demo.repository.LogDetailJpaRepository;
 import com.t3.spring.boot.demo.repository.LogJpaRepository;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +30,6 @@ public class MyServiceController {
   @RequestMapping(value = "log/{id}", method = RequestMethod.GET)
   public Log getLogById1(@PathVariable Long id) {
     Log log = logJpaRepository.findOne(id);
-    Hibernate.initialize(log);
     return log;
   }
 
@@ -57,8 +55,7 @@ public class MyServiceController {
 
   @RequestMapping(value = "log-detail/{id}", method = RequestMethod.GET)
   public LogDetail getLogDetail1(@PathVariable Long id) {
-    LogDetail logDetail = logDetailJpaRepository.getOne(id);
-    Hibernate.initialize(logDetail);
+    LogDetail logDetail = logDetailJpaRepository.findOne(id);
     return logDetail;
   }
 }
