@@ -1,8 +1,11 @@
 package com.t3.spring.boot.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Creation of spring-boot-demo-2.
@@ -26,6 +29,10 @@ public class Log implements Serializable{
 
   @Temporal(TemporalType.TIMESTAMP)
   private Date datetrait;
+
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "log")
+  @JsonManagedReference
+  public List<LogDetail> logDetails;
 
   public Log() {
   }
