@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import static javax.persistence.GenerationType.SEQUENCE;
+
 /**
  * Creation of spring-boot-demo-2.
  * <p/>
@@ -21,13 +23,14 @@ import java.util.List;
 @Table(name = "t_log")
 public class Log implements Serializable{
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = SEQUENCE, generator = "LOG_ID")
+  @SequenceGenerator(name = "LOG_ID", sequenceName = "LOG_ID", allocationSize = 1)
   private Long id;
 
   @Column(name = "interface", nullable = false)
   private String interfaceName;
 
-  @Temporal(TemporalType.TIMESTAMP)
+  @Version
   private Date datetrait;
 
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "log")

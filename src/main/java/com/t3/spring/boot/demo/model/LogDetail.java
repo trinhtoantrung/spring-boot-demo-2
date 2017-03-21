@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 import java.io.Serializable;
 
+import static javax.persistence.GenerationType.SEQUENCE;
+
 /**
  * Creation of spring-boot-demo-2.
  * <p/>
@@ -17,9 +19,10 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "t_logdtl")
-public class LogDetail implements Serializable{
+public class LogDetail implements Serializable {
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = SEQUENCE, generator = "T_LOGDTL_SEQ_UN_ID")
+  @SequenceGenerator(name = "T_LOGDTL_SEQ_UN_ID", sequenceName = "T_LOGDTL_SEQ_UN_ID", allocationSize = 1)
   @Column(name = "imx_un_id")
   private Long id;
 
@@ -27,7 +30,7 @@ public class LogDetail implements Serializable{
   private String erreur;
 
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name="id")
+  @JoinColumn(name = "id")
   @JsonBackReference
   private Log log;
 

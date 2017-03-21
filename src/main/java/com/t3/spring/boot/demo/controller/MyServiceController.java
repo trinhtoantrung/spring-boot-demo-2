@@ -33,12 +33,12 @@ public class MyServiceController {
     return log;
   }
 
-  @RequestMapping(value = "log/", method = RequestMethod.POST)
+  @RequestMapping(value = "log", method = RequestMethod.POST)
   public Log createLog1(@RequestBody Log log) {
     return logJpaRepository.saveAndFlush(log);
   }
 
-  @RequestMapping(value = "log/", method = RequestMethod.PATCH)
+  @RequestMapping(value = "log", method = RequestMethod.PATCH)
   public Log updateLog1(@RequestBody Log log) {
     if (logJpaRepository.findOne(log.getId()) != null) {
       return logJpaRepository.saveAndFlush(log);
@@ -57,5 +57,10 @@ public class MyServiceController {
   public LogDetail getLogDetail1(@PathVariable Long id) {
     LogDetail logDetail = logDetailJpaRepository.findOne(id);
     return logDetail;
+  }
+
+  @RequestMapping(value = "log-detail", method = RequestMethod.POST)
+  public LogDetail createLog1(@RequestBody LogDetail logDetail) {
+    return logDetailJpaRepository.saveAndFlush(logDetail);
   }
 }
