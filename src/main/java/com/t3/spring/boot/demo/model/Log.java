@@ -63,4 +63,12 @@ public class Log implements Serializable{
   public void setDatetrait(Date datetrait) {
     this.datetrait = datetrait;
   }
+
+  public List<LogDetail> getLogDetails() {
+    return logDetails;
+  }
+
+  public void setLogDetails(List<LogDetail> logDetails) {
+    this.logDetails = logDetails;
+  }
 }

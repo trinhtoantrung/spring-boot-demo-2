@@ -7,6 +7,9 @@ import com.t3.spring.boot.demo.repository.LogJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Creation of spring-boot-demo-2.
  * <p/>
@@ -40,10 +43,34 @@ public class MyServiceController {
 
   @RequestMapping(value = "log", method = RequestMethod.PATCH)
   public Log updateLog1(@RequestBody Log log) {
-    if (logJpaRepository.findOne(log.getId()) != null) {
-      return logJpaRepository.saveAndFlush(log);
+    Log existedLog = logJpaRepository.findOne(log.getId());
+    List<LogDetail> newLogDetails = new ArrayList<>();
+
+    if (existedLog != null) {
+      if (log.getInterfaceName() != null) {
+        existedLog.setInterfaceName(log.getInterfaceName());
+      }
+
+      if (log.getLogDetails() != null) {
+        for (LogDetail logDetail : log.getLogDetails()) {
+          if (logDetail.getId() != null) {
+            LogDetail newLogDetail = logDetailJpaRepository.findOne(logDetail.getId());
+            if (newLogDetail != null) {
+              newLogDetails.add(newLogDetail);
+            }
+          }
+        }
+
+        existedLog.setLogDetails(newLogDetails);
+      }
+      else {
+        existedLog.setLogDetails(null);
+      }
+
+      logJpaRepository.saveAndFlush(existedLog);
     }
-    return null;
+
+    return existedLog;
   }
 
   @RequestMapping(value = "log/{id}", method = RequestMethod.DELETE)
