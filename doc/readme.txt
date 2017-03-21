@@ -11,8 +11,41 @@ http://docs.jboss.org/hibernate/jpa/2.1/api/javax/persistence/
 =================================================
 Spring Data JPA
 
-Get
-http://localhost:8181/my-service/log/24319
+Get log, logdetail
+http://localhost:8181/my-service/log-detail/3425
+http://localhost:8181/my-service/log/24484
+
+insert log
+{
+  "interfaceName": "interface name 5"
+}
+
+{
+  "interfaceName": "interface name 6",
+  "logDetails": [
+    {
+      "erreur": "error message 2"
+    }
+  ]
+}
+
+insert logdetail
+{
+  "erreur": "error message 3"
+}
+
+update log
+{
+  "id": 24484,
+  "interfaceName": "interface name 6",
+  "datetrait": 1490089853676,
+  "logDetails": [
+    {
+      "id": 3420,
+      "erreur": "error message 2"
+    }
+  ]
+}
 
 
 =================================================
