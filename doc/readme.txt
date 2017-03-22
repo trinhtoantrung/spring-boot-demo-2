@@ -50,6 +50,8 @@ update log
 Get
 http://localhost:8181/my-service/log/findLogByInterfaceLike?interface=13
 http://localhost:8181/my-service/log/queryByInterfaceNameLike?interface=13
+http://localhost:8181/my-service/log/nativeQueryByInterfaceNameLike?interface=13
+
 =================================================
 Spring DATA REST
 Create log

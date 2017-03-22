@@ -100,4 +100,9 @@ public class MyServiceController {
   public List<Log> queryLogByInterfaceLike(@RequestParam(value = "interface") String interfaceName) {
     return logJpaRepository.queryByInterfaceNameLike(interfaceName);
   }
+
+  @RequestMapping(value = "log/nativeQueryByInterfaceNameLike", method = RequestMethod.GET)
+  public List<Log> nativeQueryByInterfaceNameLike(@RequestParam(value = "interface") String interfaceName) {
+    return logJpaRepository.nativeQueryByInterfaceLike(interfaceName);
+  }
 }

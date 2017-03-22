@@ -24,4 +24,7 @@ public interface LogJpaRepository extends JpaRepository<Log, Long>{
 
   @Query("select log from Log log where log.interfaceName like %?1")
   public List<Log> queryByInterfaceNameLike(String interfaceName);
+
+  @Query(value = "select * from t_log where interface like %?1", nativeQuery = true)
+  public List<Log> nativeQueryByInterfaceLike(String interfaceName);
 }
