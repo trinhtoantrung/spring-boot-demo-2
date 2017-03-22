@@ -90,4 +90,9 @@ public class MyServiceController {
   public LogDetail createLog1(@RequestBody LogDetail logDetail) {
     return logDetailJpaRepository.saveAndFlush(logDetail);
   }
+
+  @RequestMapping(value = "log/findLogByInterfaceLike1", method = RequestMethod.GET)
+  public List<Log> findLogByInterfaceLike1(@RequestParam(value = "interface") String interfaceName) {
+    return logJpaRepository.findByInterfaceNameLike("%" + interfaceName + "%");
+  }
 }

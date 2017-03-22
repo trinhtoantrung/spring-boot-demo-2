@@ -4,6 +4,8 @@ import com.t3.spring.boot.demo.model.Log;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Creation of spring-boot-demo-2.
  * <p/>
@@ -16,4 +18,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LogJpaRepository extends JpaRepository<Log, Long>{
+  // Query DSL
+  List<Log> findByInterfaceNameLike(String interfaceName);
 }
