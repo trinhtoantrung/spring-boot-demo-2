@@ -5,6 +5,7 @@ import com.t3.spring.boot.demo.model.LogDetail;
 import com.t3.spring.boot.demo.repository.LogDetailJpaRepository;
 import com.t3.spring.boot.demo.repository.LogJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -91,11 +92,13 @@ public class MyServiceController {
     return logDetailJpaRepository.saveAndFlush(logDetail);
   }
 
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   @RequestMapping(value = "log/findLogByInterfaceLike", method = RequestMethod.GET)
   public List<Log> findLogByInterfaceLike(@RequestParam(value = "interface") String interfaceName) {
     return logJpaRepository.findByInterfaceNameLike("%" + interfaceName + "%");
   }
 
+  @PreAuthorize("hasRole('ROLE_USER')")
   @RequestMapping(value = "log/queryByInterfaceNameLike", method = RequestMethod.GET)
   public List<Log> queryLogByInterfaceLike(@RequestParam(value = "interface") String interfaceName) {
     return logJpaRepository.queryByInterfaceNameLike(interfaceName);

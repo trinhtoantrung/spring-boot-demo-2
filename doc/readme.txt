@@ -53,8 +53,16 @@ http://localhost:8181/my-service/log/queryByInterfaceNameLike?interface=13
 http://localhost:8181/my-service/log/nativeQueryByInterfaceNameLike?interface=13
 
 =================================================
-Spring DATA REST
-Create log
-Create log detail
-Update log
-Update log detail
+Spring security - BASIC
+2 content: Authentication + Authorization
+
+1.
+default get from properties file
+
+2. override
+@Configuration
+@EnableWebSecurity -> do not load default from properties
+@EnableGlobalMethodSecurity(prePostEnabled = true) -> enable @PreAuthorize
+@PreAuthorize("hasRole('ROLE_ADMIN')") = @Secured("ROLE_ADMIN")
+
+
