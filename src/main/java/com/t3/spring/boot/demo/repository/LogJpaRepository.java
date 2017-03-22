@@ -2,6 +2,7 @@ package com.t3.spring.boot.demo.repository;
 
 import com.t3.spring.boot.demo.model.Log;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,5 +20,8 @@ import java.util.List;
 @Repository
 public interface LogJpaRepository extends JpaRepository<Log, Long>{
   // Query DSL
-  List<Log> findByInterfaceNameLike(String interfaceName);
+  public List<Log> findByInterfaceNameLike(String interfaceName);
+
+  @Query("select log from Log log where log.interfaceName like %?1")
+  public List<Log> queryByInterfaceNameLike(String interfaceName);
 }

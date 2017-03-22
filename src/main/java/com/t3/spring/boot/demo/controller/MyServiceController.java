@@ -91,8 +91,13 @@ public class MyServiceController {
     return logDetailJpaRepository.saveAndFlush(logDetail);
   }
 
-  @RequestMapping(value = "log/findLogByInterfaceLike1", method = RequestMethod.GET)
-  public List<Log> findLogByInterfaceLike1(@RequestParam(value = "interface") String interfaceName) {
+  @RequestMapping(value = "log/findLogByInterfaceLike", method = RequestMethod.GET)
+  public List<Log> findLogByInterfaceLike(@RequestParam(value = "interface") String interfaceName) {
     return logJpaRepository.findByInterfaceNameLike("%" + interfaceName + "%");
+  }
+
+  @RequestMapping(value = "log/queryByInterfaceNameLike", method = RequestMethod.GET)
+  public List<Log> queryLogByInterfaceLike(@RequestParam(value = "interface") String interfaceName) {
+    return logJpaRepository.queryByInterfaceNameLike(interfaceName);
   }
 }
