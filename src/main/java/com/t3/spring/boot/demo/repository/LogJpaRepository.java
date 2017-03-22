@@ -18,7 +18,7 @@ import java.util.List;
  */
 
 @Repository
-public interface LogJpaRepository extends JpaRepository<Log, Long>{
+public interface LogJpaRepository extends JpaRepository<Log, Long>, LogJpaRepositoryCustom{
   // Query DSL
   public List<Log> findByInterfaceNameLike(String interfaceName);
 
