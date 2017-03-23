@@ -31,6 +31,7 @@ public class MyServiceController {
   @Autowired
   private LogDetailJpaRepository logDetailJpaRepository;
 
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   @RequestMapping(value = "log/{id}", method = RequestMethod.GET)
   public Log getLogById1(@PathVariable Long id) {
     Log log = logJpaRepository.findOne(id);

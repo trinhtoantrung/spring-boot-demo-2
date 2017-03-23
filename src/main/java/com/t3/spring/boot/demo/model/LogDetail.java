@@ -3,6 +3,7 @@ package com.t3.spring.boot.demo.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 import static javax.persistence.GenerationType.SEQUENCE;
@@ -26,7 +27,6 @@ public class LogDetail implements Serializable {
   @Column(name = "imx_un_id")
   private Long id;
 
-  @Column(nullable = false)
   private String erreur;
 
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

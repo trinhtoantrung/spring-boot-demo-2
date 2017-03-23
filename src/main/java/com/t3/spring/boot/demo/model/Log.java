@@ -3,6 +3,7 @@ package com.t3.spring.boot.demo.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +28,8 @@ public class Log implements Serializable{
   @SequenceGenerator(name = "LOG_ID", sequenceName = "LOG_ID", allocationSize = 1)
   private Long id;
 
-  @Column(name = "interface", nullable = false)
+  @Column(name = "interface")
+  @NotNull
   private String interfaceName;
 
   @Version
